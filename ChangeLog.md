@@ -1,8 +1,30 @@
-#### v1.0.13
+#### v1.0.16
+* Fix decompression of JPEG Baseline Process 1 images
+* Fix conversion of YBR to RGB in JPEG compressed images
+* Add ability to handle encapsulated OW pixel data
+* Better handling of grayscale images without Window/Level in dataset
+
+#### v1.0.15 (09/06/2012)
+* Add ability to store user state object in DicomService based classes
+* Add ability to store user state object in DicomClient
+* Fix handling of UIDs in DicomCFindRequest
+* Fix comparison of private DicomTags
+* Add shortcut constructor for private DicomTags
+* Handle null DicomDateRange in DicomDataset.Add()
+* Modality Worklist C-Find helper method
+
+#### v1.0.14 (09/05/2012)
+* Fix bug in DicomDatasetReaderObserver handling zero length Specific Character Set elements
+* Fix bug in DICOM Dump when displaying zero length UIDs
+* Load implementation version from assembly info
+
+#### v1.0.13 (09/04/2012)
 * Add ability for library to create and manage temp files
 * User state object for DIMSE requests and responses
 * Fix reading of elements with unknown dictionary VR (Justin Wake)
 * Fix handling of UIDs in DicomCMoveRequest (Justin Wake)
+* Add version to file meta information
+* Add support for multiframe images in DicomImage
 
 #### v1.0.12 (08/27/2012)
 * Add private dictionary to assembly

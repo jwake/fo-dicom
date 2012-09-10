@@ -122,11 +122,15 @@ namespace Dicom {
 					_values = new string[0];
 				else
 					_values = StringValue.Split('\\');
+				_count = _values.Length;
 			}
 
 			if (typeof(T) == typeof(string) || typeof(T) == typeof(object)) {
 				if (item == -1)
 					return (T)((object)StringValue);
+
+				if (item < 0 || item >= Count)
+					throw new ArgumentOutOfRangeException("item", "Index is outside the range of available value items");
 
 				return (T)((object)_values[item]);
 			}

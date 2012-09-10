@@ -18,6 +18,9 @@ namespace Dicom {
 			Element = element;
 		}
 
+		public DicomTag(ushort group, ushort element, string privateCreator) : this(group, element, DicomDictionary.Default.GetPrivateCreator(privateCreator)) {
+		}
+
 		public DicomTag(ushort group, ushort element, DicomPrivateCreator privateCreator) {
 			Group = group;
 			Element = element;
@@ -95,15 +98,23 @@ namespace Dicom {
 		public int CompareTo(DicomTag other) {
 			if (Group != other.Group)
 				return Group.CompareTo(other.Group);
-			if (Element != other.Element)
-				return Element.CompareTo(other.Element);
+
 			if (PrivateCreator != null || other.PrivateCreator != null) {
 				if (PrivateCreator == null)
 					return -1;
 				if (other.PrivateCreator == null)
 					return 1;
-				return PrivateCreator.CompareTo(other.PrivateCreator);
+
+				int compare = PrivateCreator.CompareTo(other.PrivateCreator);
+				if (compare != 0)
+					return compare;
+
+				return (Element & 0xff).CompareTo(other.Element & 0xff);
 			}
+
+			if (Element != other.Element)
+				return Element.CompareTo(other.Element);
+
 			return 0;
 		}
 
